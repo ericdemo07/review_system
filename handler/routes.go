@@ -15,4 +15,7 @@ func (h *Handler) Register(g *echo.Group) {
 
 	item := g.Group("/item")
 	item.POST("", h.AddItem)
+
+	review := g.Group("/review")
+	review.POST("", h.AddReview)
 }

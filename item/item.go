@@ -1,7 +1,9 @@
 package item
 
-import "review_system/model"
+import (
+	"review_system/database/db_model"
+)
 
 type Store interface {
-	CreateItem(*model.Item) error
+	CreateItem(*db_model.Item) error
 }

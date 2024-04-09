@@ -2,7 +2,7 @@ package store
 
 import (
 	"gorm.io/gorm"
-	"review_system/model"
+	"review_system/database/db_model"
 )
 
 type ItemStore struct {
@@ -15,7 +15,7 @@ func NewItemStore(db *gorm.DB) *ItemStore {
 	}
 }
 
-func (cs *ItemStore) CreateItem(item *model.Item) error {
+func (cs *ItemStore) CreateItem(item *db_model.Item) error {
 	err := cs.db.Create(&item)
 	return err.Error
 }

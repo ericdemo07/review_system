@@ -16,8 +16,9 @@ func main() {
 
 	cs := store.NewCategoryStore(db)
 	is := store.NewItemStore(db)
+	rs := store.NewReviewStore(db)
 
-	h := handler.NewHandler(cs, is)
+	h := handler.NewHandler(cs, is, rs)
 	h.Register(g)
 
 	r.Logger.Fatal(r.Start("127.0.0.1:8585"))

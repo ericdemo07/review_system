@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm/logger"
 	"log"
 	"os"
-	"review_system/model"
+	"review_system/database/db_model"
 	"time"
 )
 
@@ -54,7 +54,8 @@ func DropTestDB() error {
 
 func AutoMigrate(db *gorm.DB) {
 	db.AutoMigrate(
-		&model.Category{},
-		&model.Item{},
+		&db_model.Category{},
+		&db_model.Item{},
+		&db_model.Review{},
 	)
 }

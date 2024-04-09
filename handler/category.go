@@ -5,13 +5,13 @@ import (
 	"github.com/labstack/echo/v4"
 	"log"
 	"net/http"
+	"review_system/mapper"
 	"review_system/model"
 )
 
 func (h *Handler) AddCategory(c echo.Context) error {
 	category := model.Category{}
 	defer c.Request().Body.Close()
-
 	err := json.NewDecoder(c.Request().Body).Decode(&category)
 
 	if err != nil {
@@ -19,7 +19,9 @@ func (h *Handler) AddCategory(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusInternalServerError, err.Error)
 	}
 
-	err = h.categoryStore.CreateCategory(&category)
+	dbCategory := mapper.CategoryToCategoryDBModelMapper(category)
+
+	err = h.categoryStore.CreateCategory(&dbCategory)
 
 	if err != nil {
 		return c.JSON(http.StatusUnprocessableEntity, err)
